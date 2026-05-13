@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1a1a40, #3b0a45);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  margin-top: 30px;
+  animation: float 3s infinite ease-in-out;
+}
+
+.section {
+  text-align: center;
+  padding: 40px;
+}
+
+.card {
+  display: inline-block;
+  margin: 15px;
+  padding: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  animation: float 4s infinite ease-in-out;
+}
+
+img {
+  width: 220px;
+  height: 220px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Buttons */
+button, a.download {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #ff4da6;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button:hover, a.download:hover {
+  background: #ff1f8f;
+}
+
+/* Video popup */
+#videoModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+video {
+  width: 80%;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎂 Happy Birthday 🎂</h1>
+
+<div class="section">
+  <h2>Special Memories</h2>
+
+  <div class="card">
+    <img src="img1.jpeg" />
+    <br/>
+    <a class="download" href="img1.jpeg" download>Download</a>
+  </div>
+
+  <div class="card">
+    <img src="img2.jpeg" />
+    <br/>
+    <a class="download" href="img2.jpeg" download>Download</a>
+  </div>
+
+  <div class="card">
+    <img src="img3.jpeg" />
+    <br/>
+    <a class="download" href="img3.jpeg" download>Download</a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>For my friend 💖</h2>
+  <p style="font-size:22px;">
+    Dear <b>kadapaari</b>, wishing you a fantastic birthday filled with joy and success! 🎉
+  </p>
+</div>
+
+<div class="section">
+  <h2>Watch Surprise Video 🎥</h2>
+  <button onclick="openVideo()">▶ Play Video</button>
+</div>
+
+<!-- Video Modal -->
+<div id="videoModal" onclick="closeVideo()">
+  <video id="videoPlayer" controls>
+    <source src="vid.mp4" type="video/mp4">
+  </video>
+</div>
+
+<script>
+function openVideo() {
+  document.getElementById("videoModal").style.display = "flex";
+  document.getElementById("videoPlayer").play();
+}
+
+function closeVideo() {
+  document.getElementById("videoModal").style.display = "none";
+  document.getElementById("videoPlayer").pause();
+}
+</script>
+
+</body>
+</html>
