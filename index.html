@@ -1,289 +1,290 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8" />  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
-    <title>Happy Birthday Kadapaari!</title>  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>  
+<!DOCTYPE html>      
+<html lang="en">      
+<head>      
+    <meta charset="UTF-8" />      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>      
+    <title>Happy Birthday Kadapaari!</title>      
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>      
+          
+    <style>      
+        :root {      
+            --primary: #ff4da6;      
+            --secondary: #8e44ad;      
+            --glass: rgba(255, 255, 255, 0.1);      
+            --text: #ffffff;      
+        }      
       
-    <style>  
-        :root {  
-            --primary: #ff4da6;  
-            --secondary: #8e44ad;  
-            --glass: rgba(255, 255, 255, 0.1);  
-            --text: #ffffff;  
-        }  
-  
-        * { box-sizing: border-box; }  
-  
-        body {  
-            margin: 0;  
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
-            background: radial-gradient(circle at center, #2e0249, #000000);  
-            color: var(--text);  
-            overflow-x: hidden;  
-            scroll-behavior: smooth;  
-        }  
-  
-        #confetti-canvas {  
-            position: fixed;  
-            top: 0;  
-            left: 0;  
-            width: 100%;  
-            height: 100%;  
-            z-index: -1;  
-            pointer-events: none;  
-        }  
-  
-        header {  
-            height: 100vh;  
-            display: flex;  
-            flex-direction: column;  
-            justify-content: center;  
-            align-items: center;  
-            text-align: center;  
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');  
-        }  
-  
-        h1 {  
-            font-size: clamp(3rem, 8vw, 5rem);  
-            margin: 0;  
-            background: linear-gradient(to right, #ff4da6, #f9d423, #ff4da6);  
-            -webkit-background-clip: text;  
-            -webkit-text-fill-color: transparent;  
-            animation: gradientMove 3s infinite linear, floatText 4s ease-in-out infinite;  
-            background-size: 200% auto;  
-        }  
-  
-        @keyframes gradientMove {  
-            to { background-position: 200% center; }  
-        }  
-  
-        @keyframes floatText {  
-            0%,100% { transform: translateY(0); }  
-            50% { transform: translateY(-12px); }  
-        }  
-  
-        .scroll-indicator {  
-            margin-top: 50px;  
-            font-size: 0.9rem;  
-            opacity: 0.7;  
-            animation: bounce 2s infinite;  
-        }  
-  
-        .container {  
-            max-width: 1100px;  
-            margin: 0 auto;  
-            padding: 50px 20px;  
-        }  
-  
-        .section-title {  
-            text-align: center;  
-            font-size: 2.5rem;  
-            margin-bottom: 40px;  
-        }  
-  
-        .gallery {  
-            display: grid;  
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  
-            gap: 25px;  
-        }  
-  
-        .card {  
-            background: var(--glass);  
-            backdrop-filter: blur(10px);  
-            border: 1px solid rgba(255,255,255,0.1);  
-            padding: 20px;  
-            border-radius: 20px;  
-            text-align: center;  
-            transition: 0.4s;  
-            position: relative;  
-        }  
-  
-        .card:hover {  
-            transform: scale(1.05) rotate(1deg);  
-        }  
-  
-        .card img {  
-            width: 100%;  
-            height: 250px;  
-            object-fit: cover;  
-            border-radius: 15px;  
-            margin-bottom: 15px;  
-        }  
-  
-        .laugh {  
-            position: absolute;  
-            top: 10px;  
-            left: 10px;  
-            font-size: 22px;  
-            animation: pop 1.5s infinite;  
-        }  
-  
-        @keyframes pop {  
-            0%,100% { transform: scale(1); }  
-            50% { transform: scale(1.3); }  
-        }  
-  
-        .tribute {  
-            background: var(--glass);  
-            padding: 50px;  
-            border-radius: 30px;  
-            margin: 60px 0;  
-            line-height: 1.8;  
-            font-size: 1.2rem;  
-        }  
-  
-        .highlight {  
-            color: var(--primary);  
-            font-weight: bold;  
-        }  
-  
-        .btn {  
-            padding: 12px 30px;  
-            border: none;  
-            border-radius: 50px;  
-            background: linear-gradient(45deg, #ff4da6, #8e44ad);  
-            color: white;  
-            font-weight: bold;  
-            cursor: pointer;  
-            text-decoration: none;  
-            display: inline-block;  
-            margin-top: 10px;  
-        }  
-  
-        #videoModal {  
-            display: none;  
-            position: fixed;  
-            top: 0; left: 0;  
-            width: 100%; height: 100%;  
-            background: rgba(0,0,0,0.95);  
-            z-index: 1000;  
-            justify-content: center;  
-            align-items: center;  
-        }  
-  
-        .modal-content {  
-            width: 90%;  
-            max-width: 800px;  
-            position: relative;  
-        }  
-  
-        video {  
-            width: 100%;  
-            border-radius: 15px;  
-        }  
-  
-        #videoLaugh {  
-            position: fixed;  
-            top: 15px;  
-            left: 15px;  
-            font-size: 40px;  
-            display: none;  
-            z-index: 2000;  
-            animation: pop 1s infinite;  
-        }  
-    </style>  
-</head>  
-
-<body>  
-
-<canvas id="confetti-canvas"></canvas>  
-<div id="videoLaugh">😂</div>  
-
-<header>  
-    <h1 class="animate__animated animate__zoomIn">Happy Birthday <br>Kadapaari!</h1>  
-    <p class="animate__animated animate__fadeInUp animate__delay-1s">The world became brighter today.</p>  
-</header>  
-
-<div class="container">  
-
-    <section>  
-        <h2 class="section-title">Captured Moments</h2>  
-
-        <div class="gallery">  
-
-            <div class="card">  
-                <div class="laugh">😂</div>  
-                <img src="img1.jpg">  
-                <p>Best memories</p>  
-                <a class="btn" href="img1.jpg" download>Keep This</a>  
-            </div>  
-
-            <div class="card">  
-                <div class="laugh">😂</div>  
-                <img src="img2.jpg">  
-                <p>Crazy laughs</p>  
-                <a class="btn" href="img2.jpg" download>Keep This</a>  
-            </div>  
-
-            <div class="card">  
-                <div class="laugh">😂</div>  
-                <img src="img3.jpg">  
-                <p>Unforgettable moments</p>  
-                <a class="btn" href="img3.jpg" download>Keep This</a>  
-            </div>  
-
-            <!-- 🆕 IMAGE 4 ADDED -->  
-            <div class="card">  
-                <div class="laugh">😂</div>  
-                <img src="img4.jpg">  
-                <p>More beautiful memories</p>  
-                <a class="btn" href="img4.jpg" download>Keep This</a>  
-            </div>  
-
-        </div>  
-    </section>  
-
-    <section class="tribute">  
-        <h2 class="section-title">Message</h2>  
-        <p>Dear <span class="highlight">Kadapaari</span>, you are amazing!</p>  
-
-        <div style="text-align:center;">  
-            <button class="btn" onclick="openVideo('vid.mp4')">▶ Watch Surprise Video</button>  
-            <button class="btn" onclick="openVideo('vid2.mp4')">▶ Watch Surprise Video 2</button>  
-            <a class="btn" href="vid.mp4" download>Keep This Video</a>  
-        </div>  
-    </section>  
-
-</div>  
-
-<footer style="text-align:center; padding:30px;">Made with ❤️</footer>  
-
-<!-- VIDEO MODAL -->  
-<div id="videoModal">  
-    <div class="modal-content">  
-        <video id="videoPlayer" controls>  
-            <source src="" type="video/mp4">  
-        </video>  
-    </div>  
-</div>  
-
-<script>  
-
-function openVideo(src) {  
-    const modal = document.getElementById("videoModal");  
-    const video = document.getElementById("videoPlayer");  
-
-    video.src = src;  
-    modal.style.display = "flex";  
-    video.play();  
-    document.getElementById("videoLaugh").style.display = "block";  
-}  
-
-function closeVideo() {  
-    const modal = document.getElementById("videoModal");  
-    const video = document.getElementById("videoPlayer");  
-
-    modal.style.display = "none";  
-    video.pause();  
-    video.src = "";  
-    document.getElementById("videoLaugh").style.display = "none";  
-}  
-
-document.getElementById("videoModal").addEventListener("click", closeVideo);  
-
-</script>  
-
-</body>  
+        * { box-sizing: border-box; }      
+      
+        body {      
+            margin: 0;      
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;      
+            background: radial-gradient(circle at center, #2e0249, #000000);      
+            color: var(--text);      
+            overflow-x: hidden;      
+            scroll-behavior: smooth;      
+        }      
+      
+        #confetti-canvas {      
+            position: fixed;      
+            top: 0;      
+            left: 0;      
+            width: 100%;      
+            height: 100%;      
+            z-index: -1;      
+            pointer-events: none;      
+        }      
+      
+        header {      
+            height: 100vh;      
+            display: flex;      
+            flex-direction: column;      
+            justify-content: center;      
+            align-items: center;      
+            text-align: center;      
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');      
+        }      
+      
+        /* ✨ NEW TEXT ANIMATION */  
+        h1 {      
+            font-size: clamp(3rem, 8vw, 5rem);      
+            margin: 0;      
+            background: linear-gradient(270deg, #ff4da6, #f9d423, #8e44ad, #ff4da6);      
+            background-size: 600% 600%;      
+            -webkit-background-clip: text;      
+            -webkit-text-fill-color: transparent;      
+            animation: gradientFlow 6s ease infinite, floatText 4s ease-in-out infinite;      
+        }      
+      
+        @keyframes gradientFlow {      
+            0% { background-position: 0% 50%; }      
+            50% { background-position: 100% 50%; }      
+            100% { background-position: 0% 50%; }      
+        }      
+      
+        @keyframes floatText {      
+            0%,100% { transform: translateY(0); }      
+            50% { transform: translateY(-12px); }      
+        }      
+      
+        .scroll-indicator {      
+            margin-top: 50px;      
+            font-size: 0.9rem;      
+            opacity: 0.7;      
+            animation: bounce 2s infinite;      
+        }      
+      
+        .container {      
+            max-width: 1100px;      
+            margin: 0 auto;      
+            padding: 50px 20px;      
+        }      
+      
+        .section-title {      
+            text-align: center;      
+            font-size: 2.5rem;      
+            margin-bottom: 40px;      
+        }      
+      
+        .gallery {      
+            display: grid;      
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));      
+            gap: 25px;      
+        }      
+      
+        .card {      
+            background: var(--glass);      
+            backdrop-filter: blur(10px);      
+            border: 1px solid rgba(255,255,255,0.1);      
+            padding: 20px;      
+            border-radius: 20px;      
+            text-align: center;      
+            transition: 0.4s;      
+            position: relative;      
+        }      
+      
+        .card:hover {      
+            transform: scale(1.05) rotate(1deg);      
+        }      
+      
+        /* ✅ FIX: images now show fully (no cropping) */  
+        .card img {      
+            width: 100%;      
+            height: 250px;      
+            object-fit: contain;   /* CHANGED FROM cover → contain */  
+            background: rgba(0,0,0,0.2);  
+            border-radius: 15px;      
+            margin-bottom: 15px;      
+        }      
+      
+        .laugh {      
+            position: absolute;      
+            top: 10px;      
+            left: 10px;      
+            font-size: 22px;      
+            animation: pop 1.5s infinite;      
+        }      
+      
+        @keyframes pop {      
+            0%,100% { transform: scale(1); }      
+            50% { transform: scale(1.3); }      
+        }      
+      
+        .tribute {      
+            background: var(--glass);      
+            padding: 50px;      
+            border-radius: 30px;      
+            margin: 60px 0;      
+            line-height: 1.8;      
+            font-size: 1.2rem;      
+        }      
+      
+        .highlight {      
+            color: var(--primary);      
+            font-weight: bold;      
+        }      
+      
+        .btn {      
+            padding: 12px 30px;      
+            border: none;      
+            border-radius: 50px;      
+            background: linear-gradient(45deg, #ff4da6, #8e44ad);      
+            color: white;      
+            font-weight: bold;      
+            cursor: pointer;      
+            text-decoration: none;      
+            display: inline-block;      
+            margin-top: 10px;      
+        }      
+      
+        #videoModal {      
+            display: none;      
+            position: fixed;      
+            top: 0; left: 0;      
+            width: 100%; height: 100%;      
+            background: rgba(0,0,0,0.95);      
+            z-index: 1000;      
+            justify-content: center;      
+            align-items: center;      
+        }      
+      
+        .modal-content {      
+            width: 90%;      
+            max-width: 800px;      
+            position: relative;      
+        }      
+      
+        video {      
+            width: 100%;      
+            border-radius: 15px;      
+        }      
+      
+        #videoLaugh {      
+            position: fixed;      
+            top: 15px;      
+            left: 15px;      
+            font-size: 40px;      
+            display: none;      
+            z-index: 2000;      
+            animation: pop 1s infinite;      
+        }      
+    </style>      
+</head>      
+    
+<body>      
+    
+<canvas id="confetti-canvas"></canvas>      
+<div id="videoLaugh">😂</div>      
+    
+<header>      
+    <h1 class="animate__animated animate__zoomIn">Happy Birthday <br>Kadapaari!</h1>      
+    <p class="animate__animated animate__fadeInUp animate__delay-1s">The world became brighter today.</p>      
+</header>      
+    
+<div class="container">      
+    
+    <section>      
+        <h2 class="section-title">Captured Moments</h2>      
+    
+        <div class="gallery">      
+    
+            <div class="card">      
+                <div class="laugh">😂</div>      
+                <img src="img1.jpg">      
+                <p>Best memories</p>      
+                <a class="btn" href="img1.jpg" download>Keep This</a>      
+            </div>      
+    
+            <div class="card">      
+                <div class="laugh">😂</div>      
+                <img src="img2.jpg">      
+                <p>Crazy laughs</p>      
+                <a class="btn" href="img2.jpg" download>Keep This</a>      
+            </div>      
+    
+            <div class="card">      
+                <div class="laugh">😂</div>      
+                <img src="img3.jpg">      
+                <p>Unforgettable moments</p>      
+                <a class="btn" href="img3.jpg" download>Keep This</a>      
+            </div>      
+    
+            <div class="card">      
+                <div class="laugh">😂</div>      
+                <img src="img4.jpg">      
+                <p>More beautiful memories</p>      
+                <a class="btn" href="img4.jpg" download>Keep This</a>      
+            </div>      
+    
+        </div>      
+    </section>      
+    
+    <section class="tribute">      
+        <h2 class="section-title">Message</h2>      
+        <p>Dear <span class="highlight">Kadapaari</span>, you are amazing!</p>      
+    
+        <div style="text-align:center;">      
+            <button class="btn" onclick="openVideo('vid.mp4')">▶ Watch Surprise Video</button>      
+            <button class="btn" onclick="openVideo('vid2.mp4')">▶ Watch Surprise Video 2</button>      
+            <a class="btn" href="vid.mp4" download>Keep This Video</a>      
+        </div>      
+    </section>      
+    
+</div>      
+    
+<footer style="text-align:center; padding:30px;">Made with ❤️</footer>      
+    
+<div id="videoModal">      
+    <div class="modal-content">      
+        <video id="videoPlayer" controls>      
+            <source src="" type="video/mp4">      
+        </video>      
+    </div>      
+</div>      
+    
+<script>      
+function openVideo(src) {      
+    const modal = document.getElementById("videoModal");      
+    const video = document.getElementById("videoPlayer");      
+    
+    video.src = src;      
+    modal.style.display = "flex";      
+    video.play();      
+    document.getElementById("videoLaugh").style.display = "block";      
+}      
+    
+function closeVideo() {      
+    const modal = document.getElementById("videoModal");      
+    const video = document.getElementById("videoPlayer");      
+    
+    modal.style.display = "none";      
+    video.pause();      
+    video.src = "";      
+    document.getElementById("videoLaugh").style.display = "none";      
+}      
+    
+document.getElementById("videoModal").addEventListener("click", closeVideo);      
+</script>      
+    
+</body>      
 </html>
